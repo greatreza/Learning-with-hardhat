@@ -4,6 +4,154 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  31337: {
+    twitter: {
+      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_tweet",
+              type: "string",
+            },
+          ],
+          name: "createTweet",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_owner",
+              type: "address",
+            },
+          ],
+          name: "getAllTweets",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "author",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "content",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "timestamp",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "likes",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct twitter.Tweet[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_owner",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "_i",
+              type: "uint256",
+            },
+          ],
+          name: "getTweet",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "author",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "content",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "timestamp",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "likes",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct twitter.Tweet",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "tweets",
+          outputs: [
+            {
+              internalType: "address",
+              name: "author",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "content",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "likes",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;
