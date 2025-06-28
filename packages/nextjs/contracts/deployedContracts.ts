@@ -95,8 +95,39 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     twitter: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
       abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "MAX_TWEET_LENGTH",
+          outputs: [
+            {
+              internalType: "uint16",
+              name: "",
+              type: "uint16",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint16",
+              name: "newTweetLength",
+              type: "uint16",
+            },
+          ],
+          name: "changeTweetLength",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
         {
           inputs: [
             {
@@ -192,6 +223,19 @@ const deployedContracts = {
               internalType: "struct twitter.Tweet",
               name: "",
               type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
             },
           ],
           stateMutability: "view",
