@@ -95,7 +95,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     twitter: {
-      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
       abi: [
         {
           inputs: [],
@@ -154,6 +154,11 @@ const deployedContracts = {
             {
               components: [
                 {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+                {
                   internalType: "address",
                   name: "author",
                   type: "address",
@@ -200,6 +205,11 @@ const deployedContracts = {
             {
               components: [
                 {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+                {
                   internalType: "address",
                   name: "author",
                   type: "address",
@@ -226,6 +236,24 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "author",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+          ],
+          name: "likeTweet",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
@@ -257,6 +285,11 @@ const deployedContracts = {
           name: "tweets",
           outputs: [
             {
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+            {
               internalType: "address",
               name: "author",
               type: "address",
@@ -278,6 +311,24 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "author",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+          ],
+          name: "unlikeTweet",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
       ],

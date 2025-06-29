@@ -22,7 +22,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  const deployment = await deploy("PausableToken", {
+  await deploy("PausableToken", {
     from: deployer,
     // // Contract constructor arguments
     // args: [deployer],
@@ -31,7 +31,6 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
-  console.log(`✅ PausableToken deployed at: ${deployment.address}`);
 
   // Get the deployed contract to interact with it after deploying.
   // const twitter = await hre.ethers.getContract<Contract>("twitter", deployer);
