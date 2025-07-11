@@ -1,0 +1,45 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Calculator.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract Calculator {\n\n    int256 result = 0;\n\n    function add(int256 num) public {\n        result += num;\n    }\n\n    function subtract(int256 num1,int256 num2) public returns (int256){\n        result = num1 - num2;\n        return result;\n    }\n    function multiply(int256 num) public {\n        result *= num;\n    }\n    function get() public view returns(int256){\n        return result;\n    }\n\n}"
+    },
+    "contracts/hello.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.18;\n\ncontract Hello {\n    string public wellcome = \"Hello World\";\n    uint128 public i = 9657348;\n    address public addr_of_me = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;\n    uint256 public wait_time = 1 days;\n}"
+    },
+    "contracts/PausableToken.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\ncontract PausableToken {\n    address public owner;\n    bool public paused;\n    mapping(address => uint) public balances;\n\n    constructor() {\n        owner = msg.sender;\n        paused = false;\n        balances[owner] = 1000;\n    }\n\n    modifier onlyOwner() {\n        // 1️⃣ Implement the modifier to allow only the owner to call the function\n        require(msg.sender == owner,\"YOU ARE NOT THE OWNER\");\n        _;\n    }\n\n    // 2️⃣ Implement the modifier to check if the contract is not paused\n    modifier notPaused() {\n        require(paused == false,\"Contract is paused!\");\n        _;\n    }\n\n    function pause() public onlyOwner {\n        paused = true;\n    }\n\n    function unpause() public onlyOwner {\n        paused = false;\n    }\n\n    // 3️⃣ use the notPaused modifier in this function \n    function transfer(address to, uint amount) public notPaused {\n        require(balances[msg.sender] >= amount, \"Insufficient balance\");\n\n        balances[msg.sender] -= amount;\n        balances[to] += amount;\n    }\n}\n"
+    },
+    "contracts/twitter.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ncontract twitter{\n\n    uint16 constant MAX_TWEET_LENGTH = 280;\n\n    struct Tweet {\n        address author;\n        string content;\n        uint256 timestamp;\n        uint256 likes;\n    }\n\n    mapping(address => Tweet []) public tweets;\n\n    function createTweet(string memory _tweet) public {\n        require(bytes(_tweet).length <= MAX_TWEET_LENGTH , \"Tweet is too long!\");\n\n        Tweet memory newTweet = Tweet({\n            author:msg.sender,\n            content:_tweet,\n            timestamp: block.timestamp,\n            likes: 0\n        });\n        tweets[msg.sender].push(newTweet);\n    }\n    function getTweet(address _owner, uint _i) public view returns (Tweet memory){\n        return tweets[_owner][_i];\n    }\n    function getAllTweets(address _owner) public view returns (Tweet[] memory){\n        return tweets[_owner];\n    }\n\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

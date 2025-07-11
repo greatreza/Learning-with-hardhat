@@ -1,0 +1,171 @@
+{
+  "address": "0x3839306713A4Ed645e03598A5c7c9b19D0D666Aa",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "balances",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pause",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "paused",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "unpause",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x29ee9076e58d6c1bfa39c7874e4f020f9708ea7f37fee8964d35ae23ff3e2e96",
+  "receipt": {
+    "to": null,
+    "from": "0xA73Bf0858a790AcE33CD34B683B4E90809b825F1",
+    "contractAddress": "0x3839306713A4Ed645e03598A5c7c9b19D0D666Aa",
+    "transactionIndex": 166,
+    "gasUsed": "303519",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xbc6833c7f34682fa2a04ddacd440cf69621c747529a74f24d59b8f7af861a5b8",
+    "transactionHash": "0x29ee9076e58d6c1bfa39c7874e4f020f9708ea7f37fee8964d35ae23ff3e2e96",
+    "logs": [],
+    "blockNumber": 8712684,
+    "cumulativeGasUsed": "11997744",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "ca29c4cc334e5adb37f4389a333eda4c",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"balances\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/PausableToken.sol\":\"PausableToken\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/PausableToken.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\ncontract PausableToken {\\n    address public owner;\\n    bool public paused;\\n    mapping(address => uint) public balances;\\n\\n    constructor() {\\n        owner = msg.sender;\\n        paused = false;\\n        balances[owner] = 1000;\\n    }\\n\\n    modifier onlyOwner() {\\n        // 1\\ufe0f\\u20e3 Implement the modifier to allow only the owner to call the function\\n        require(msg.sender == owner,\\\"YOU ARE NOT THE OWNER\\\");\\n        _;\\n    }\\n\\n    // 2\\ufe0f\\u20e3 Implement the modifier to check if the contract is not paused\\n    modifier notPaused() {\\n        require(paused == false,\\\"Contract is paused!\\\");\\n        _;\\n    }\\n\\n    function pause() public onlyOwner {\\n        paused = true;\\n    }\\n\\n    function unpause() public onlyOwner {\\n        paused = false;\\n    }\\n\\n    // 3\\ufe0f\\u20e3 use the notPaused modifier in this function \\n    function transfer(address to, uint amount) public notPaused {\\n        require(balances[msg.sender] >= amount, \\\"Insufficient balance\\\");\\n\\n        balances[msg.sender] -= amount;\\n        balances[to] += amount;\\n    }\\n}\\n\",\"keccak256\":\"0xf842bbf24a7ac07d790b259ac480266448bd5f505b99c90a26100bcc257474bd\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a81b0319163360ff60a01b19811691909117825581526001602052604081206103e890556103b690819061004e90396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806327e235e3146100675780633f4ba83a1461009a5780635c975abb146100a45780638456cb59146100c85780638da5cb5b146100d0578063a9059cbb146100fb575b600080fd5b6100876100753660046102f2565b60016020526000908152604090205481565b6040519081526020015b60405180910390f35b6100a261010e565b005b6000546100b890600160a01b900460ff1681565b6040519015158152602001610091565b6100a2610174565b6000546100e3906001600160a01b031681565b6040516001600160a01b039091168152602001610091565b6100a2610109366004610314565b6101db565b6000546001600160a01b031633146101655760405162461bcd60e51b81526020600482015260156024820152742ca7aa9020a922902727aa102a24229027aba722a960591b60448201526064015b60405180910390fd5b6000805460ff60a01b19169055565b6000546001600160a01b031633146101c65760405162461bcd60e51b81526020600482015260156024820152742ca7aa9020a922902727aa102a24229027aba722a960591b604482015260640161015c565b6000805460ff60a01b1916600160a01b179055565b600054600160a01b900460ff161561022b5760405162461bcd60e51b8152602060048201526013602482015272436f6e7472616374206973207061757365642160681b604482015260640161015c565b336000908152600160205260409020548111156102815760405162461bcd60e51b8152602060048201526014602482015273496e73756666696369656e742062616c616e636560601b604482015260640161015c565b33600090815260016020526040812080548392906102a0908490610354565b90915550506001600160a01b038216600090815260016020526040812080548392906102cd90849061036d565b90915550505050565b80356001600160a01b03811681146102ed57600080fd5b919050565b60006020828403121561030457600080fd5b61030d826102d6565b9392505050565b6000806040838503121561032757600080fd5b610330836102d6565b946020939093013593505050565b634e487b7160e01b600052601160045260246000fd5b818103818111156103675761036761033e565b92915050565b808201808211156103675761036761033e56fea2646970667358221220988f5b8bff1715e286eb693061245967e7b793060064e9e15da63280494812f164736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c806327e235e3146100675780633f4ba83a1461009a5780635c975abb146100a45780638456cb59146100c85780638da5cb5b146100d0578063a9059cbb146100fb575b600080fd5b6100876100753660046102f2565b60016020526000908152604090205481565b6040519081526020015b60405180910390f35b6100a261010e565b005b6000546100b890600160a01b900460ff1681565b6040519015158152602001610091565b6100a2610174565b6000546100e3906001600160a01b031681565b6040516001600160a01b039091168152602001610091565b6100a2610109366004610314565b6101db565b6000546001600160a01b031633146101655760405162461bcd60e51b81526020600482015260156024820152742ca7aa9020a922902727aa102a24229027aba722a960591b60448201526064015b60405180910390fd5b6000805460ff60a01b19169055565b6000546001600160a01b031633146101c65760405162461bcd60e51b81526020600482015260156024820152742ca7aa9020a922902727aa102a24229027aba722a960591b604482015260640161015c565b6000805460ff60a01b1916600160a01b179055565b600054600160a01b900460ff161561022b5760405162461bcd60e51b8152602060048201526013602482015272436f6e7472616374206973207061757365642160681b604482015260640161015c565b336000908152600160205260409020548111156102815760405162461bcd60e51b8152602060048201526014602482015273496e73756666696369656e742062616c616e636560601b604482015260640161015c565b33600090815260016020526040812080548392906102a0908490610354565b90915550506001600160a01b038216600090815260016020526040812080548392906102cd90849061036d565b90915550505050565b80356001600160a01b03811681146102ed57600080fd5b919050565b60006020828403121561030457600080fd5b61030d826102d6565b9392505050565b6000806040838503121561032757600080fd5b610330836102d6565b946020939093013593505050565b634e487b7160e01b600052601160045260246000fd5b818103818111156103675761036761033e565b92915050565b808201808211156103675761036761033e56fea2646970667358221220988f5b8bff1715e286eb693061245967e7b793060064e9e15da63280494812f164736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 55,
+        "contract": "contracts/PausableToken.sol:PausableToken",
+        "label": "owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 57,
+        "contract": "contracts/PausableToken.sol:PausableToken",
+        "label": "paused",
+        "offset": 20,
+        "slot": "0",
+        "type": "t_bool"
+      },
+      {
+        "astId": 61,
+        "contract": "contracts/PausableToken.sol:PausableToken",
+        "label": "balances",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_uint256)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
