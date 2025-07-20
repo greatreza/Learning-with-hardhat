@@ -336,6 +336,73 @@ const deployedContracts = {
     },
   },
   11155111: {
+    EventExample: {
+      address: "0xB4D2E00634eDFF8b7453700168C0f208D12628D6",
+      abi: [
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "username",
+              type: "string",
+            },
+          ],
+          name: "NewUserRegistered",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_username",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "_age",
+              type: "uint256",
+            },
+          ],
+          name: "registerUser",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "users",
+          outputs: [
+            {
+              internalType: "string",
+              name: "username",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "age",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
     PausableToken: {
       address: "0x3839306713A4Ed645e03598A5c7c9b19D0D666Aa",
       abi: [

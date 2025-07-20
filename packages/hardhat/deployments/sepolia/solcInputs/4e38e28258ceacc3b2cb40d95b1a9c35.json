@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/EventsExercise.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\ncontract EventExample {\n    // 1️⃣ Add an event called \"NewUserRegistered\" with 2 arguments\n    // 👉 user as address type\n    // 👉 username as string type\n    // CODE HERE 👇\n    event NewUserRegistered(address indexed user, string username);\n\n    struct User {\n        string username;\n        uint256 age;\n    }\n\n    mapping(address => User) public users;\n\n    function registerUser(string memory _username, uint256 _age) public {\n        User storage newUser = users[msg.sender];\n        newUser.username = _username;\n        newUser.age = _age;\n\n        // 2️⃣ Emit the event with msg.sender and username as the inputs\n        // CODE HERE 👇\n        emit NewUserRegistered(msg.sender, _username);\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
